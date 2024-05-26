@@ -66,7 +66,14 @@ def configure_map_reduce_chain():
 def parse_vtt(file_content: str) -> str:
     """
     Parses VTT content and returns plain text.
+
+    Args:
+        file_content (str): The VTT file content.
+
+    Returns:
+        str: The plain text.
     """
+
     vtt = webvtt.read_buffer(StringIO(file_content))
     lines = [caption.text.strip() for caption in vtt]
     return " ".join(lines)
@@ -95,6 +102,17 @@ def process_text(text: str) -> str:
 
 
 def summarize_file(file_path: str) -> str:
+    """
+    Summarize a file for summarization using a map reduce chain.
+
+    Args:
+        file_path (str): The path to the file to summarize.
+
+    Returns:
+        str: The summarized text.
+
+    """
+
     # Determine the file extension
     _, file_extension = os.path.splitext(file_path)
     text = ""
